@@ -31,7 +31,7 @@ const saudacoes = (message: Message, client: Whatsapp) => {
         console.log('Result: ', result);
       })
       .catch((error) => {
-        console.error('Error when sending: ', error);
+        console.error('Error when sendng: ', error);
       })
   } else {
     client.sendText(message.from, `${saudacao}\n Quarta-feira não funcionamos!`)
