@@ -1,9 +1,31 @@
-import { Message, Whatsapp } from 'venom-bot';
+const venom = require('venom-bot');
+const express = require('express');
 
-import saudacoes from '../messages/saudacoes';
+const app = express();
+const PORT = 8080;
 
-function startChatbot(client : Whatsapp) {
-  client.onMessage(async (message : Message) => {
+app.get('/', (req, res) => {
+  console.log('Alguém acessou o servidor!');
+  res.send('Servidor na nuvem com console.');
+});
+
+venom.create({ session: 'graficaArteOf' })
+  .then((client) => {
+    // Inicialize o servidor Express após criar a sessão Venom
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+    });
+
+    // Implemente a lógica para iniciar o chatbot
+    startChatbot(client);
+  })
+  .catch((erro) => {
+    console.log(erro);
+  });
+
+
+function startChatbot(client) {
+  client.onMessage(async (message) => {
     const text  = message.body.toLowerCase();
 
     if (!text) {
@@ -20,7 +42,7 @@ function startChatbot(client : Whatsapp) {
 
       // Saudações
     if (text.includes("bom dia") || text.includes("boa tarde") || text.includes("boa noite") || text.includes("oi") || text.includes("ola") || text.includes("opa") || text.includes("ei tassia")) {
-      saudacoes(message, client);
+      // saudacoes(message, client);
     }
 
     
@@ -33,5 +55,3 @@ function startChatbot(client : Whatsapp) {
     }
   });
 }
-
-export default startChatbot;
