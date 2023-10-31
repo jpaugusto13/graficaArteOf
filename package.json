@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.js"
+    "dev": "tsx ./src/index.ts",
+    "build": "tsup src",
+    "start": "nojde dist/index.js"
   },
   "keywords": [],
   "author": "",
