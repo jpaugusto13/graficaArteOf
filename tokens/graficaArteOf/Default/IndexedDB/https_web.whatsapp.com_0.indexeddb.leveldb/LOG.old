@@ -1,0 +1,18 @@
+2023/10/31-10:37:56.731 6244 Reusing MANIFEST /home/joao/Downloads/Chatbot-Grafico/tokens/graficaArteOf/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/10/31-10:37:56.731 6244 Recovering log #180
+2023/10/31-10:37:56.732 6244 Reusing old log /home/joao/Downloads/Chatbot-Grafico/tokens/graficaArteOf/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000180.log 
+2023/10/31-10:37:58.527 6244 Compacting 1@1 + 5@2 files
+2023/10/31-10:37:58.582 6244 Generated table #186@1: 27050 keys, 2203990 bytes
+2023/10/31-10:37:58.597 6244 Generated table #187@1: 81 keys, 2115538 bytes
+2023/10/31-10:37:58.614 6244 Generated table #188@1: 83 keys, 2133888 bytes
+2023/10/31-10:37:58.629 6244 Generated table #189@1: 79 keys, 2139212 bytes
+2023/10/31-10:37:58.653 6244 Generated table #190@1: 923 keys, 2122511 bytes
+2023/10/31-10:37:58.675 6244 Generated table #191@1: 1979 keys, 1413811 bytes
+2023/10/31-10:37:58.676 6244 Compacted 1@1 + 5@2 files => 12128950 bytes
+2023/10/31-10:37:58.679 6244 compacted to: files[ 0 2 9 0 0 0 0 ]
+2023/10/31-10:37:58.679 6244 Delete type=2 #179
+2023/10/31-10:37:58.679 6244 Delete type=2 #151
+2023/10/31-10:37:58.679 6244 Delete type=2 #150
+2023/10/31-10:37:58.679 6244 Delete type=2 #177
+2023/10/31-10:37:58.679 6244 Delete type=2 #182
+2023/10/31-10:37:58.679 6244 Delete type=2 #178
