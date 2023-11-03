@@ -1,5 +1,7 @@
 const venom = require('venom-bot');
 
+const app = express();
+
 venom.create({ session: 'graficaArteOf' })
   .then((client) => {
     startChatbot(client);
