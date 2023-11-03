@@ -12,7 +12,7 @@ venom.create({ session: 'graficaArteOf' })
     console.log(erro);
   });
 
-const getGreeting = (hour) => {
+const getGreeting = () => {
   const date = new Date();
   const hour = date.getHours();
   const minutes = date.getMinutes();
@@ -21,10 +21,10 @@ const getGreeting = (hour) => {
     return `Olá, bom dia!\n\nEm que posso ajudar?`;
   }
 
-  else if(hour >= 12 && hour <= 13) {
+  else if(hour >= 12 && hour < 13) {
     return `Olá, boa tarde!\n\nEstamos em horario de almoço lhe retorno assim que possível.`;
   } 
-  else if(hour >= 13 && minutes <= 30) {
+  else if(hour >= 13 && minutes < 30) {
     return `Olá, boa tarde!\n\nEstamos em horario de almoço lhe retorno assim que possível.`;
   } 
   else if(hour == 13 && minutes > 30) {
@@ -61,7 +61,7 @@ function startChatbot(client) {
 
       // Saudações
     if (text.includes("bom dia") || text.includes("boa tarde") || text.includes("boa noite") || text.includes("oi") || text.includes("ola") || text.includes("opa") || text.includes("ei tassia")) {
-      const greeting = getGreeting(hour);
+      const greeting = getGreeting();
       const messageText = `${greeting}`;
       client.sendText(message.from, messageText)
       .then((result) => {
