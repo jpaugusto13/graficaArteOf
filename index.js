@@ -1,22 +1,9 @@
 const venom = require('venom-bot');
-const express = require('express');
 
 const app = express();
-const PORT = 8080;
-
-app.get('/', (req, res) => {
-  console.log('Alguém acessou o servidor!');
-  res.send('Servidor na nuvem com console.');
-});
 
 venom.create({ session: 'graficaArteOf' })
   .then((client) => {
-    // Inicialize o servidor Express após criar a sessão Venom
-    app.listen(PORT, () => {
-      console.log(`Servidor rodando na porta ${PORT}`);
-    });
-
-    // Implemente a lógica para iniciar o chatbot
     startChatbot(client);
   })
   .catch((erro) => {
@@ -25,12 +12,13 @@ venom.create({ session: 'graficaArteOf' })
 
 
 function startChatbot(client) {
-  client.onMessage(async (message) => {
+  client.onMessage((message) => {
     const text  = message.body.toLowerCase();
 
-    if (!text) {
+    if (!text || message.isGroupMsg === true) {
       return "";
     }
+
 
     if(text.includes("endereço") || text.includes("endereco") || text.includes("localização")) {
       client
@@ -38,6 +26,13 @@ function startChatbot(client) {
         .then((result) => {
           console.log('Result: ', result);
         })
+        client.sendLocation(message.from, '-3.870772', '-38.622402', 'Brasil')
+      .then((result) => {
+        console.log('Result: ', result);
+      })
+      .catch((erro) => {
+        console.error('Error when sending: ', erro);
+  });
     }
 
       // Saudações
@@ -45,13 +40,13 @@ function startChatbot(client) {
       // saudacoes(message, client);
     }
 
-    
     if (text.includes("pix") && message.isGroupMsg === false) {
-      client
-      .sendText(message.from, 'Pix - telefone\n85986681391\nFrancisco Paulo Pereira\n\nMercado Pago\n\nNos envia o comprovante após o pagamento. 😊💙')
+      client.sendText(message.from, 'Pix - telefone\n85986681391\nFrancisco Paulo Pereira\n\nMercado Pago\n\nNos envia o comprovante após o pagamento. 😊💙')
       .then((result) => {
         console.log('Result: ', result);
-      })
+      }).catch((e) => {
+        console.log(e)
+      }) 
     }
   });
 }
