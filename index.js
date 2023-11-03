@@ -8,6 +8,17 @@ venom.create({ session: 'graficaArteOf' })
     console.log(erro);
   });
 
+const getGreeting = (hour) => {
+  const date = new Date();
+  const hour = date.getHours();
+
+  if(hour >= 7 && hour < 12) {
+    return `Olá, bom dia!\n\nEm que posso ajudar?`;
+  }
+  else if(hour >= 12 && hour < 18) {
+    return `Olá, boa tarde!\n\nEm que posso ajudar?`;
+  }
+};
 
 function startChatbot(client) {
   client.onMessage((message) => {
@@ -35,7 +46,15 @@ function startChatbot(client) {
 
       // Saudações
     if (text.includes("bom dia") || text.includes("boa tarde") || text.includes("boa noite") || text.includes("oi") || text.includes("ola") || text.includes("opa") || text.includes("ei tassia")) {
-      // saudacoes(message, client);
+      const greeting = getGreeting(hour);
+      const messageText = `${greeting}`;
+      client.sendText(message.from, messageText)
+      .then((result) => {
+        console.log('Result: ', result);
+      })
+      .catch((error) => {
+        console.error('Error when sending: ', error);
+      })
     }
 
     if (text.includes("pix") && message.isGroupMsg === false) {
