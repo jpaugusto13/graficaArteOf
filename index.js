@@ -15,11 +15,22 @@ venom.create({ session: 'graficaArteOf' })
 const getGreeting = (hour) => {
   const date = new Date();
   const hour = date.getHours();
+  const minutes = date.getMinutes();
 
   if(hour >= 7 && hour < 12) {
     return `Olá, bom dia!\n\nEm que posso ajudar?`;
   }
-  else if(hour >= 12 && hour < 18) {
+
+  else if(hour >= 12 && hour <= 13) {
+    return `Olá, boa tarde!\n\nEstamos em horario de almoço lhe retorno assim que possível.`;
+  } 
+  else if(hour >= 13 && minutes <= 30) {
+    return `Olá, boa tarde!\n\nEstamos em horario de almoço lhe retorno assim que possível.`;
+  } 
+  else if(hour == 13 && minutes > 30) {
+    return `Olá, boa tarde!\n\nEm que posso ajudar?`;
+  }
+  else if(hour >= 13 && hour < 18) {
     return `Olá, boa tarde!\n\nEm que posso ajudar?`;
   }
 };
