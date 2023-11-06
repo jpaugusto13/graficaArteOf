@@ -36,44 +36,46 @@ const getGreeting = () => {
 };
 
 function startChatbot(client) {
-  client.onMessage((message) => {
-    const text  = message.body.toLowerCase();
-
-    if (!text || message.isGroupMsg === true) {
+  client.onMessage(async (message) => {
+    console.log(message)
+    console.log(message.type)
+    if (message.type == "image" || message.type == "ptt" || message.isGroupMsg === true) {
       return "";
     }
 
+    const text  = message.body.toLowerCase();
+
+
 
     if(text.includes("endereço") || text.includes("endereco") || text.includes("localização")) {
-      client
-        .sendText(message.from, 'Rua Antônio de Alencar \nN° 1001 \nCoqueiral - Maracanaú')
-        .then((result) => {
-          console.log('Result: ', result);
+      await client.sendText(message.from, 'Rua Antônio de Alencar \nN° 1001 \nCoqueiral - Maracanaú').then((result) => {
+        console.log('Result: ', result);
         })
         client.sendLocation(message.from, '-3.870772', '-38.622402', 'Brasil')
       .then((result) => {
         console.log('Result: ', result);
-      })
-      .catch((erro) => {
+      }).catch((erro) => {
         console.error('Error when sending: ', erro);
-  });
+      });
     }
 
-      // Saudações
-    if (text.includes("bom dia") || text.includes("boa tarde") || text.includes("boa noite") || text.includes("oi") || text.includes("ola") || text.includes("opa") || text.includes("ei tassia")) {
+    if (text.includes("bom dia") || text.includes("boa tarde") || text.includes("boa noite")) {
       const greeting = getGreeting();
       const messageText = `${greeting}`;
-      client.sendText(message.from, messageText)
+
+      await client.sendText(message.from, messageText)
       .then((result) => {
         console.log('Result: ', result);
       })
       .catch((error) => {
         console.error('Error when sending: ', error);
       })
+
+      return "";
     }
 
     if (text.includes("pix") && message.isGroupMsg === false) {
-      client.sendText(message.from, 'Pix - telefone\n85986681391\nFrancisco Paulo Pereira\n\nMercado Pago\n\nNos envia o comprovante após o pagamento. 😊💙')
+      await client.sendText(message.from, 'Pix - telefone\n85986681391\nFrancisco Paulo Pereira\n\nMercado Pago\n\nNos envia o comprovante após o pagamento. 😊💙')
       .then((result) => {
         console.log('Result: ', result);
       }).catch((e) => {
