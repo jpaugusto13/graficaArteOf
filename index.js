@@ -27,7 +27,7 @@ const getGreeting = () => {
   else if(hour >= 13 && minutes < 30) {
     return `Olá, boa tarde!\n\nEstamos em horario de almoço lhe retorno assim que possível.`;
   } 
-  else if(hour == 13 && minutes > 30) {
+  else if(hour == 13 && minutes > 30 && hour < 14) {
     return `Olá, boa tarde!\n\nEm que posso ajudar?`;
   }
   else if(hour >= 13 && hour < 18) {
