@@ -21,7 +21,7 @@ const getGreeting = async () => {
     return `Olá, boa tarde!\n\nEstamos em horario de almoço, retornaremos em breve.`;
   } 
   
-  if (hour == 13) {
+  if (hour == 14) {
     if(minutes <= 30) {
       return `Olá, boa tarde!\n\nEstamos em horario de almoço, retornaremos em breve.`;
     } else {
